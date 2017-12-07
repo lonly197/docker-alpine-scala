@@ -1,6 +1,6 @@
 FROM lonly/docker-alpine-java:oraclejre-8u152
 
-ARG VERSION=2.11.11
+ARG VERSION=2.12.4
 ARG BUILD_DATE
 ARG VCS_REF
 
@@ -25,6 +25,8 @@ ENV SCALA_HOME=/usr/share/scala \
 
 # Install packages
 RUN	set -x \
+    ## Define Variant
+    && SCALA_VERSION=${VERSION} \
 	## Update apk
 	&& apk update \
     ## Install base package
@@ -33,7 +35,7 @@ RUN	set -x \
     && update-ca-certificates \
     ## Download scala pacakge
     && cd "/tmp" \
-    && wget "https://downloads.typesafe.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.tgz" \
+    && wget -q -c "https://downloads.typesafe.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.tgz" \
     && tar -zxvf "scala-${SCALA_VERSION}.tgz" \
     ## Install scala pacakge
     && mkdir "${SCALA_HOME}" \

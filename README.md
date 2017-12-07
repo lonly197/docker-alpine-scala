@@ -8,7 +8,7 @@
 docker build --build-arg VCS_REF=`git rev-parse --short HEAD` \
 --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 --rm \
--t lonly/docker-alpine-scala:2.11.11 .
+-t lonly/docker-alpine-scala:2.12.4 .
 ```
 
 # Usage
